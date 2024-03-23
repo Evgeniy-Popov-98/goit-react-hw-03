@@ -11,10 +11,10 @@ const mailBoxSchema = Yup.object().shape({
     .required("Email address is required!")
     .min(3, "Your contact name must be more than 3 characters!")
     .max(50, `Your contact name must be less than 50 characters!`),
-  //   number: Yup.number()
-  //     .required("Contact number is required!")
-  //     .min(3, "Your contact number must be more than 3 characters!")
-  //     .max(7, `Your contact number must be less than 7 characters!`),
+  number: Yup.string()
+    .required("Contact number is required!")
+    .min(3, "Your contact number must be more than 3 characters!")
+    .matches(/^\d{3}-\d{2}-\d{3}$/, "Некоректний формат номера телефону"),
 });
 
 const ContactForm = ({ onAddContact }) => {
@@ -33,7 +33,12 @@ const ContactForm = ({ onAddContact }) => {
       <Form className={clsx(css.boxForm)}>
         <label className={clsx(css.labelForm)}>
           <span className={clsx(css.labelSpan)}>Name</span>
-          <Field className={clsx(css.labelInput)} type="text" name="name" />
+          <Field
+            className={clsx(css.labelInput)}
+            type="text"
+            name="name"
+            placeholder="Your name"
+          />
           <ErrorMessage component="p" name="name" />
         </label>
         <label className={clsx(css.labelForm)}>
@@ -42,12 +47,11 @@ const ContactForm = ({ onAddContact }) => {
             className={clsx(css.labelInput)}
             type="tel"
             name="number"
-            // pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
+            placeholder="123-45-678"
           />
           <ErrorMessage component="p" name="number" />
         </label>
         <button className={clsx(css.formButton)} type="submit">
-          {" "}
           Create new contact
         </button>
       </Form>
