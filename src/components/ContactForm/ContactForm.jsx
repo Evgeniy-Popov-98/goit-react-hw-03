@@ -14,7 +14,10 @@ const mailBoxSchema = Yup.object().shape({
   number: Yup.string()
     .required("Contact number is required!")
     .min(3, "Your contact number must be more than 3 characters!")
-    .matches(/^\d{3}-\d{2}-\d{3}$/, "Некоректний формат номера телефону"),
+    .matches(
+      /^\d{3}-\d{2}-\d{2}$/,
+      `Invalid phone number format! Use "-", for example 123-45-67`
+    ),
 });
 
 const ContactForm = ({ onAddContact }) => {
@@ -24,7 +27,6 @@ const ContactForm = ({ onAddContact }) => {
   };
 
   return (
-    // <div className={clsx(css.boxForm)}>
     <Formik
       initialValues={FORM_INITIAL_VALUES}
       validationSchema={mailBoxSchema}
@@ -52,11 +54,10 @@ const ContactForm = ({ onAddContact }) => {
           <ErrorMessage component="p" name="number" />
         </label>
         <button className={clsx(css.formButton)} type="submit">
-          Create new contact
+          Add new contact
         </button>
       </Form>
     </Formik>
-    // </div>
   );
 };
 

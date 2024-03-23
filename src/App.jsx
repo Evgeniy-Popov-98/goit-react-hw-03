@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 
-import ContactForm from "./components/ContactForm/ContactForm";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactLict/ContactLict";
 import "./App.css";
+import ContactForm from "./components/ContactForm/ContactForm";
 
 const contactsArr = [
   { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
@@ -35,9 +35,6 @@ function App() {
     };
 
     setContacts((prevState) => [...prevState, finalContacts]);
-
-    setContacts([...contacts, finalContacts]);
-    setContacts((prevUsers) => [...prevUsers, finalContacts]);
   };
 
   const onChangeFilter = (event) => {

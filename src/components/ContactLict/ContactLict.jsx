@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import clsx from "clsx";
 import css from "./ContactLict.module.css";
 import Contact from "../Contact/Contact";
